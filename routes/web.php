@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ResumeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/resume/upload', [ResumeController::class, 'showUploadForm'])->name('resume.upload.form');
+Route::post('/resume/upload', [ResumeController::class, 'upload'])->name('resume.upload');
+
+Route::get('/analysis', [ResumeController::class, 'showAnalysis'])
+    ->name('analysis.result');
+
+Route::get('/report/download', [ResumeController::class, 'downloadReport'])
+    ->name('report.download');
